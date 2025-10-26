@@ -2,28 +2,27 @@
 using namespace std;
 
 int main() {
-    int a;
-    cin >> a;
-    int A[10] = {0}; 
-    int b = 0;
-    while (a > 0) {
-        A[b] = a % 10;
-        a /= 10;
-        b++;
+    const int a = 10;
+    int matrix[a];
+    for (int i = 0; i < a; i++) {
+        cin >> matrix[i];
     }
-    for (int i = 0; i < b - 1; i++) {
-        for (int j = 0; j < b - i - 1; j++) {
-            if (A[j] < A[j + 1]) {
-                int c = A[j];
-                A[j] = A[j + 1];
-                A[j + 1] = c;
-            }
+    int max1 = INT_MIN, max2 = INT_MIN, max3 = INT_MIN;
+
+    for (int i = 0; i < a; i++) {
+        if (matrix[i] > max1) {
+            max3 = max2;
+            max2 = max1;
+            max1 = matrix[i];
+        } else if (matrix[i] > max2) {
+            max3 = max2;
+            max2 = matrix[i];
+        } else if (matrix[i] > max3) {
+            max3 = matrix[i];
         }
     }
-    for (int i = 0; i < b; i++) {
-        cout << A[i];
-    }
-    cout << endl;
+
+    cout << max1 << " " << max2 << " " << max3 << endl;
 
     return 0;
 }
