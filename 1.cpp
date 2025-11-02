@@ -1,44 +1,33 @@
 #include <iostream>
+#include <string>
 using namespace std;
 
 int main() {
-    const int a = 10;
-    int matrix[a];
-    for (int i = 0; i < a; i++) {
-        cin >> matrix[i];
+    const char* C[] = { "", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM" };
+    const char* X[] = { "", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC" };
+    const char* I[] = { "", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX" };
+    string a, res;
+    cin >> a;
+
+    // Если что, то это проверка на пустую строчку
+    if (a.empty()) {
+        cout << "" << endl;
+        return 0;
     }
 
-    int start = 0;
-    int len = 1;
+    int num = stoi(a);
+    int thousands = num / 1000;
+    int hundreds = (num % 1000) / 100;
+    int tens = (num % 100) / 10;
+    int units = num % 10;
 
-    int current_start = 0;
-    int length = 1;
-    int prev_diff = matrix[1] - matrix[0];
-
-    for (int i = 1; i < a; i++) {
-        int diff = matrix[i] - matrix[i - 1];
-
-        if (diff == prev_diff) {
-            length++;
-        } else {
-            if (length > len) {
-                len = length;
-                start = current_start;
-            }
-            current_start = i - 1;
-            length = 2;
-            prev_diff = diff;
-        }
+    if (thousands > 0) {
+        res += string(thousands, 'M');
     }
-
-    if (length > len) {
-        len = length;
-        start = current_start;
-    }
-
-    for (int i = start; i < start + len; i++) {
-        cout << matrix[i] << " ";
-    }
-    cout << endl;
+    res += C[hundreds];
+    res += X[tens];
+    res += I[units];
+    cout << res << endl;
     return 0;
 }
+
