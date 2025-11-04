@@ -2,27 +2,23 @@
 using namespace std;
 
 int main() {
-    const int a = 10;
-    int matrix[a];
-    for (int i = 0; i < a; i++) {
-        cin >> matrix[i];
-    }
-    int max1 = INT_MIN, max2 = INT_MIN, max3 = INT_MIN;
+    const int a = 8;
+    string s1, s2;
+    
+    getline(cin, s1);
+    getline(cin, s2);
 
+    bool b = true;
     for (int i = 0; i < a; i++) {
-        if (matrix[i] > max1) {
-            max3 = max2;
-            max2 = max1;
-            max1 = matrix[i];
-        } else if (matrix[i] > max2) {
-            max3 = max2;
-            max2 = matrix[i];
-        } else if (matrix[i] > max3) {
-            max3 = matrix[i];
+        if (s1[i] != s2[a - 1 - i]) {
+            b = false;
+            break;
         }
     }
-
-    cout << max1 << " " << max2 << " " << max3 << endl;
-
+    if (b)
+        cout << "true" << endl;
+    else
+        cout << "false" << endl;
     return 0;
 }
+
