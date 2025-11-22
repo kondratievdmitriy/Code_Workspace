@@ -1,25 +1,34 @@
-// Задана строка, в которой слова разделены одним или несколькими пробелами.
-// Выполнить сжатие строки, оставив между словами только по одному пробелу. Сжатие выполнить на том же месте.
+// Заданы две матрицы. Получить матрицу, являющуюся суммой заданных матриц.
 
 #include <iostream>
 using namespace std;
 
 int main() {
-    string s;
-    int a = 0;
-    getline(cin, s);
-    for (int i = 0; i < s.length(); i++) {
-        if (s[i] == ' ') {
-            a++;
-            if (a > 1) {
-                s = s.substr(0, i) + s.substr(i+1, s.length());
-                i--;
-            }
-        } else {
-            a = 0;
+    int n, m;
+    cin >> n >> m;
+    cout << "Enter the first matrix:" << endl;
+    int **arr1 = new int *[n];
+    for (int i = 0; i < n; i++) {
+        arr1[i] = new int [m];
+        for (int j = 0; j < m; j++) {
+            cin >> arr1[i][j];
         }
     }
-    cout << s << endl;
-}
 
-// Можно вместо строчки с substr использовать s.erase(i, 1);
+    cout << "Enter the second matrix:" << endl;
+    int **arr2 = new int *[n];
+    for (int i = 0; i < n; i++) {
+        arr2[i] = new int [m];
+        for (int j = 0; j < m; j++) {
+            cin >> arr2[i][j];
+        }
+    }
+
+    cout << "Finish matrix:" << endl;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            cout << arr1[i][j] + arr2[i][j] << " ";
+        }
+        cout << endl;
+    }
+}
